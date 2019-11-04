@@ -1,9 +1,10 @@
 package genetic_algorithm
 
 import (
-	"fmt"
 	"math/rand"
 )
+
+const PopulationSize = 300
 
 type Organism struct {
 	DNA     []byte
@@ -11,8 +12,7 @@ type Organism struct {
 }
 
 func Evolve(target []byte) []byte {
-	organizm := createOrganizm(target)
-	fmt.Println(organizm)
+	createOrganizm(target)
 	return target
 }
 
@@ -32,4 +32,12 @@ func generateRandomText(length int) []byte {
 		text[i] = byte(rand.Intn(95) + 32)
 	}
 	return text
+}
+
+func createPopulation(target []byte) []*Organism {
+	population := make([]*Organism, PopulationSize)
+	for i := range population {
+		population[i] = createOrganizm(target)
+	}
+	return population
 }
