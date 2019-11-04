@@ -1,16 +1,15 @@
 package genetic_algorithm
 
-import "testing"
+import (
+	"bytes"
+	"testing"
+)
 
 func TestEvolve(t *testing.T) {
-	target := "To be or not to be"
+	target := []byte("To be or not to be")
 	res := Evolve(target)
 
-	if res != target {
+	if bytes.Compare(res, target) != 0 {
 		t.Errorf("Expected %s, but got %s", target, res)
 	}
-}
-
-func Evolve(target string) string {
-	return target
 }
