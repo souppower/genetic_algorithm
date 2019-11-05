@@ -16,7 +16,7 @@ func (o *Organism) calculateFitness(target []byte) {
 	o.Fitness = float64(match) / float64(len(o.DNA))
 }
 
-func createOrganizm(target []byte) *Organism {
+func createOrganism(target []byte) *Organism {
 	text := generateRandomText(len(target))
 
 	o := &Organism{
