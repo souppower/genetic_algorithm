@@ -38,4 +38,3 @@ func generateRandomText(length int) []byte {
 	}
 	return text
 }
-

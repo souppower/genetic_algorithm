@@ -2,11 +2,6 @@ package genetic_algorithm
 
 const PopulationSize = 300
 
-func Evolve(target []byte) []byte {
-	NewOrganism(target)
-	return target
-}
-
 func NewPopulation(target []byte) []*Organism {
 	population := make([]*Organism, PopulationSize)
 	for i := range population {
@@ -39,4 +34,3 @@ func getBestFitness(population []*Organism) float64 {
 	}
 	return bestFitness
 }
-
