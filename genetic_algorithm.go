@@ -7,7 +7,7 @@ import (
 const PopulationSize = 300
 
 func Evolve(target []byte) []byte {
-	createOrganism(target)
+	NewOrganism(target)
 	return target
 }
 
@@ -20,10 +20,10 @@ func generateRandomText(length int) []byte {
 	return text
 }
 
-func createPopulation(target []byte) []*Organism {
+func NewPopulation(target []byte) []*Organism {
 	population := make([]*Organism, PopulationSize)
 	for i := range population {
-		population[i] = createOrganism(target)
+		population[i] = NewOrganism(target)
 	}
 	return population
 }

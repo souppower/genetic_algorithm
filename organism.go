@@ -5,18 +5,7 @@ type Organism struct {
 	Fitness float64
 }
 
-func (o *Organism) calculateFitness(target []byte) {
-	var match int
-	for i := range o.DNA {
-		if o.DNA[i] == target[i] {
-			match++
-		}
-	}
-
-	o.Fitness = float64(match) / float64(len(o.DNA))
-}
-
-func createOrganism(target []byte) *Organism {
+func NewOrganism(target []byte) *Organism {
 	text := generateRandomText(len(target))
 
 	o := &Organism{
@@ -26,5 +15,16 @@ func createOrganism(target []byte) *Organism {
 	o.calculateFitness(target)
 
 	return o
+}
+
+func (o *Organism) calculateFitness(target []byte) {
+	var match int
+	for i := range o.DNA {
+		if o.DNA[i] == target[i] {
+			match++
+		}
+	}
+
+	o.Fitness = float64(match) / float64(len(o.DNA))
 }
 
