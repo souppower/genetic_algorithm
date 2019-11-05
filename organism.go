@@ -1,5 +1,7 @@
 package genetic_algorithm
 
+import "math/rand"
+
 type Organism struct {
 	DNA     []byte
 	Fitness float64
@@ -27,3 +29,13 @@ func (o *Organism) calculateFitness(target []byte) {
 
 	o.Fitness = float64(match) / float64(len(o.DNA))
 }
+
+func generateRandomText(length int) []byte {
+	text := make([]byte, length)
+	for i := range text {
+		// see https://en.wikibooks.org/wiki/C%2B%2B_Programming/ASCII
+		text[i] = byte(rand.Intn(95) + 32)
+	}
+	return text
+}
+
