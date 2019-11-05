@@ -27,4 +27,3 @@ func (o *Organism) calculateFitness(target []byte) {
 
 	o.Fitness = float64(match) / float64(len(o.DNA))
 }
-
