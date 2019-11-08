@@ -10,6 +10,8 @@ func NewPopulation(target []byte) []*Organism {
 	return population
 }
 
+// GenerateNextGeneration returns the next generation of organisms
+// More organisms with high fitness and less organisms with less fitness will end up in the pool
 func GenerateNextGeneration(population []*Organism, target []byte) []*Organism {
 	bestFitness := getBestFitness(population)
 	nextGeneration := make([]*Organism, 0)
