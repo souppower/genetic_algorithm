@@ -12,8 +12,8 @@ func NewPopulation(target []byte) []*Organism {
 
 // GenerateNextGeneration returns the next generation of organisms
 // More organisms with high fitness and less organisms with less fitness will end up in the pool
-func GenerateNextGeneration(population []*Organism, target []byte) []*Organism {
-	bestFitness := getBestFitness(population)
+func GenerateNextGeneration(population []*Organism) []*Organism {
+	bestFitness := getOrganismWithBestFitness(population).Fitness
 	nextGeneration := make([]*Organism, 0)
 
 	for _, pop := range population {
@@ -27,12 +27,14 @@ func GenerateNextGeneration(population []*Organism, target []byte) []*Organism {
 	return nextGeneration
 }
 
-func getBestFitness(population []*Organism) float64 {
+func getOrganismWithBestFitness(population []*Organism) *Organism {
 	var bestFitness float64
-	for _, pop := range population {
+	index := 0
+	for i, pop := range population {
 		if bestFitness < pop.Fitness {
+			index = i
 			bestFitness = pop.Fitness
 		}
 	}
-	return bestFitness
+	return population[index]
 }

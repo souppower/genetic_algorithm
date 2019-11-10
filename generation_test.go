@@ -16,7 +16,7 @@ func TestCreatePopulation(t *testing.T) {
 func TestNewGeneration(t *testing.T) {
 	target := []byte("To be or not to be")
 	population := NewPopulation(target)
-	res := GenerateNextGeneration(population, target)
+	res := GenerateNextGeneration(population)
 
 	if len(res) != PopulationSize {
 		t.Errorf("Expected %d, but got %d", PopulationSize, len(res))
@@ -37,9 +37,9 @@ func TestGetBestFitness(t *testing.T) {
 	}
 	expected := 0.23
 
-	res := getBestFitness(population)
+	res := getOrganismWithBestFitness(population)
 
-	if res != expected {
-		t.Errorf("Expected %f, but got %f", expected, res)
+	if res.Fitness != expected {
+		t.Errorf("Expected %f, but got %f", expected, res.Fitness)
 	}
 }
