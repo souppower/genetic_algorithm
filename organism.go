@@ -36,21 +36,21 @@ func (o *Organism) calculateFitness(target []byte) {
 }
 
 func (o *Organism) crossOver(other *Organism, target []byte) *Organism {
-	DNALength := len(o.DNA)
 	child := &Organism{
-		DNA: make([]byte, DNALength),
+		DNA: make([]byte, len(o.DNA)),
 	}
 
 	rand.Seed(time.Now().UTC().UnixNano())
-	mid := rand.Intn(DNALength)
+	mid := rand.Intn(len(o.DNA))
 
-	for i := 0; i < DNALength; i++ {
-		if i < mid {
+	for i := 0; i < len(o.DNA); i++ {
+		if i <= mid {
 			child.DNA[i] = o.DNA[i]
 		} else {
 			child.DNA[i] = other.DNA[i]
 		}
 	}
+
 	child.calculateFitness(target)
 
 	return child

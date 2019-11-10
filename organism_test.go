@@ -1,6 +1,8 @@
 package genetic_algorithm
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestCalculateFitness(t *testing.T) {
 	o := &Organism{
@@ -25,6 +27,22 @@ func TestCalculateFitnessIdentical(t *testing.T) {
 	expected := float64(1)
 
 	if o.Fitness != expected {
+		t.Errorf("Expected %f, but got %f", expected, o.Fitness)
+	}
+}
+
+func TestCrossOver(t *testing.T) {
+	target := []byte("oooo")
+	o := &Organism{
+		DNA: []byte("abcd"),
+	}
+	o1 := &Organism{
+		DNA: []byte("xxxx"),
+	}
+	expected := float64(0)
+	newOrganism := o.crossOver(o1, target)
+
+	if newOrganism.Fitness != expected {
 		t.Errorf("Expected %f, but got %f", expected, o.Fitness)
 	}
 }
