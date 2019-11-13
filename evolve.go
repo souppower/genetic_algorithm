@@ -1,13 +1,34 @@
 package genetic_algorithm
 
 import (
+	"bytes"
+	"fmt"
 	"math/rand"
 	"time"
 )
 
-func Evolve(target []byte) []byte {
-	NewOrganism(target)
-	return target
+func Evolve(target []byte) ([]byte, int) {
+	population := NewPopulation(target)
+	bestOrganism := getOrganismWithBestFitness(population)
+	generation := 0
+	found := false
+
+	for !found {
+		generation++
+
+		bestOrganism = getOrganismWithBestFitness(population)
+		fmt.Println(string(bestOrganism.DNA))
+		fmt.Println(bestOrganism.Fitness)
+		fmt.Println(generation)
+
+		if bytes.Compare(bestOrganism.DNA, target) == 0 {
+			found = true
+		} else {
+			population = reproduce(population, target)
+		}
+	}
+
+	return bestOrganism.DNA, generation
 }
 
 func reproduce(population []*Organism, target []byte) []*Organism {
