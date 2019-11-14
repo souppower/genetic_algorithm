@@ -37,7 +37,7 @@ func reproduce(population []*Organism, target []byte) []*Organism {
 
 	rand.Seed(time.Now().UTC().UnixNano())
 
-	for i := range population {
+	for i := 0; i < len(population); i++ {
 		r1 := rand.Intn(len(population))
 		r2 := rand.Intn(len(population))
 
