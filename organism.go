@@ -51,8 +51,6 @@ func (o *Organism) crossOver(other *Organism, target []byte) *Organism {
 		}
 	}
 
-	child.calculateFitness(target)
-
 	return child
 }
 

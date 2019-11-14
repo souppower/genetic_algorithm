@@ -45,6 +45,7 @@ func reproduce(population []*Organism, target []byte) []*Organism {
 
 		child := parent1.crossOver(parent2, target)
 		child.mutate()
+		child.calculateFitness(target)
 
 		nextGeneration[i] = child
 	}
