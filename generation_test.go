@@ -1,6 +1,7 @@
 package genetic_algorithm
 
 import (
+	"sort"
 	"testing"
 )
 
@@ -13,13 +14,31 @@ func TestCreatePopulation(t *testing.T) {
 	}
 }
 
-func TestNewGeneration(t *testing.T) {
-	target := []byte("To be or not to be")
-	population := NewPopulation(target)
-	res := GenerateNextGeneration(population)
+func TestGenerateNextGeneration(t *testing.T) {
+	oo := []*Organism{
+		{
+			Fitness: 0,
+		},
+		{
+			Fitness: 0.1,
+		},
+		{
+			Fitness: 0.1,
+		},
+		{
+			Fitness: 0.2,
+		},
+		{
+			Fitness: 0.2,
+		},
+		{
+			Fitness: 0.2,
+		},
+	}
+	res := GenerateNextGeneration(oo)
 
-	if len(res) != PopulationSize {
-		t.Errorf("Expected %d, but got %d", PopulationSize, len(res))
+	if !containsMoreHighFitnessThanLowerFitness(res) {
+		t.Errorf("Should contain more high fitness organisms than low fitness organisms.")
 	}
 }
 
