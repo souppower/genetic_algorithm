@@ -14,7 +14,7 @@ func TestCreatePopulation(t *testing.T) {
 	}
 }
 
-func TestGenerateNextGeneration(t *testing.T) {
+func TestCreatePool(t *testing.T) {
 	oo := []*Organism{
 		{
 			Fitness: 0,
@@ -35,7 +35,7 @@ func TestGenerateNextGeneration(t *testing.T) {
 			Fitness: 0.2,
 		},
 	}
-	res := GenerateNextGeneration(oo)
+	res := createPool(oo)
 
 	if !containsMoreHighFitnessThanLowerFitness(res) {
 		t.Errorf("Should contain more high fitness organisms than low fitness organisms.")

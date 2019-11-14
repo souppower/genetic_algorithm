@@ -2,17 +2,14 @@ package genetic_algorithm
 
 import (
 	"bytes"
-	"fmt"
 	"testing"
 )
 
 func TestEvolve(t *testing.T) {
-	t.Skip("Skipping long-running test.")
-
-	target := []byte("abcd")
+	target := []byte("To be or not to be")
 	match, generation := Evolve(target)
 
-	t.Logf("Got %s, generation: %d", match, generation)
+	t.Logf("Generation: %d", generation)
 
 	if bytes.Compare(match, target) != 0 {
 		t.Errorf("Expected %s, but got %s", target, match)
@@ -21,7 +18,7 @@ func TestEvolve(t *testing.T) {
 
 func TestReproduce(t *testing.T) {
 	target := []byte("abcd")
-	population := []*Organism{
+	pool := []*Organism{
 		{
 			DNA: []byte("abcd"),
 		},
@@ -33,16 +30,10 @@ func TestReproduce(t *testing.T) {
 		},
 	}
 
-	res := reproduce(population, target)
+	res := reproduce(pool, target)
 
-	for _, r := range res {
-		fmt.Println("=========================")
-		fmt.Printf("Fitness: %f\n", r.Fitness)
-		fmt.Printf("DNA: %+v\n", string(r.DNA))
-	}
-
-	if len(res) != len(population) {
-		t.Errorf("Expected %v, but got %v", len(population), len(res))
+	if len(res) != PopulationSize {
+		t.Errorf("Expected %v, but got %v", PopulationSize, len(res))
 	}
 
 }

@@ -1,6 +1,6 @@
 package genetic_algorithm
 
-const PopulationSize = 300
+const PopulationSize = 500
 
 func NewPopulation(target []byte) []*Organism {
 	population := make([]*Organism, PopulationSize)
@@ -10,21 +10,21 @@ func NewPopulation(target []byte) []*Organism {
 	return population
 }
 
-// GenerateNextGeneration returns the next generation of organisms
-// More organisms with high fitness and less organisms with less fitness will end up in the pool
-func GenerateNextGeneration(population []*Organism) []*Organism {
+// createPool returns a pool of organisms for the reproduction phase
+// More organisms with high fitness and less organisms with less fitness are contained in the pool
+func createPool(population []*Organism) []*Organism {
 	bestFitness := getOrganismWithBestFitness(population).Fitness
-	nextGeneration := make([]*Organism, 0)
+	pool := make([]*Organism, 0)
 
 	for _, pop := range population {
-		ratio := int(pop.Fitness / bestFitness * 100)
+		num := int(pop.Fitness / bestFitness * 100)
 
-		for i := 0; i < ratio; i++ {
-			nextGeneration = append(nextGeneration, pop)
+		for i := 0; i < num; i++ {
+			pool = append(pool, pop)
 		}
 	}
 
-	return nextGeneration
+	return pool
 }
 
 func getOrganismWithBestFitness(population []*Organism) *Organism {
