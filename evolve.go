@@ -9,7 +9,7 @@ import (
 
 func Evolve(target []byte) ([]byte, int) {
 	population := NewPopulation(target)
-	bestOrganism := getOrganismWithBestFitness(population)
+	var bestOrganism *Organism
 	generation := 0
 	found := false
 
@@ -17,6 +17,7 @@ func Evolve(target []byte) ([]byte, int) {
 		generation++
 
 		bestOrganism = getOrganismWithBestFitness(population)
+		fmt.Println("===============")
 		fmt.Println(string(bestOrganism.DNA))
 		fmt.Println(bestOrganism.Fitness)
 		fmt.Println(generation)

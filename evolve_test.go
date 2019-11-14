@@ -7,12 +7,15 @@ import (
 )
 
 func TestEvolve(t *testing.T) {
-	target := []byte("To be or not to be")
-	res, generation := Evolve(target)
-	fmt.Printf("Got %s, generation: %d", res, generation)
+	t.Skip("Skipping long-running test.")
 
-	if bytes.Compare(res, target) != 0 {
-		t.Errorf("Expected %s, but got %s", target, res)
+	target := []byte("abcd")
+	match, generation := Evolve(target)
+
+	t.Logf("Got %s, generation: %d", match, generation)
+
+	if bytes.Compare(match, target) != 0 {
+		t.Errorf("Expected %s, but got %s", target, match)
 	}
 }
 
