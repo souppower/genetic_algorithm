@@ -20,13 +20,13 @@ func TestReproduce(t *testing.T) {
 	target := []byte("abcd")
 	population := []*Organism{
 		{
-			DNA:     []byte("abcd"),
+			DNA: []byte("abcd"),
 		},
 		{
-			DNA:     []byte("abdc"),
+			DNA: []byte("abdc"),
 		},
 		{
-			DNA:     []byte("abxx"),
+			DNA: []byte("abxx"),
 		},
 	}
 
