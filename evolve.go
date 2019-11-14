@@ -17,7 +17,7 @@ func Evolve(target []byte) ([]byte, int) {
 		generation++
 
 		bestOrganism = getOrganismWithBestFitness(population)
-		fmt.Printf("Generation: %d, DNA: %s, Fitness: %.1f%%\n", generation, string(bestOrganism.DNA), bestOrganism.Fitness*100)
+		fmt.Printf("Generation: %d | DNA: %s | Fitness: %.1f%%\n", generation, string(bestOrganism.DNA), bestOrganism.Fitness*100)
 
 		if bytes.Compare(bestOrganism.DNA, target) == 0 {
 			found = true
