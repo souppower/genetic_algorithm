@@ -1,6 +1,7 @@
 package genetic_algorithm
 
 import (
+	"bytes"
 	"testing"
 )
 
@@ -39,10 +40,9 @@ func TestCrossOver(t *testing.T) {
 	o1 := &Organism{
 		DNA: []byte("xxxx"),
 	}
-	expected := float64(0)
 	newOrganism := o.crossOver(o1, target)
 
-	if newOrganism.Fitness != expected {
-		t.Errorf("Expected %f, but got %f", expected, o.Fitness)
+	if bytes.Compare(newOrganism.DNA, o.DNA) == 0 || bytes.Compare(newOrganism.DNA, o1.DNA) == 0 {
+		t.Errorf("New organism contains DNA identical to a parent. DNA: %s", newOrganism.DNA)
 	}
 }
